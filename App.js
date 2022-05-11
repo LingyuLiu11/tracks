@@ -15,6 +15,8 @@ import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
 
+import {Provider as AuthProvider} from './src/context/AuthContext';
+
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
@@ -53,7 +55,7 @@ function MyTabs() {
   );
 }
 
-export default function App() {
+const App = () =>  {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -76,3 +78,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default () => {
+  return (
+    <AuthProvider>
+      <App></App>
+    </AuthProvider>
+  )
+}
