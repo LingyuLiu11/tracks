@@ -27,21 +27,25 @@ function MyTabs() {
       initialRouteName="Signin"
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
+        headerShown: false 
       }}
     >
       <Tab.Screen
         name="Signin"
         component={SigninScreen}
+        screenOptions={{ headerShown: false }}
         
       />
       <Tab.Screen
         name="Signup"
         component={SignupScreen}
+        screenOptions={{ headerShown: false }}
         
       />
       <Tab.Screen
         name="Account"
         component={AccountScreen}
+        screenOptions={{ headerShown: false }}
         
       />
     </Tab.Navigator>
