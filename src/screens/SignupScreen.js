@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import {View, StyleSheet, Text} from 'react-native';
+import { View, StyleSheet, Text } from "react-native";
 
 const SignupScreen = () => {
-    return (
-        <View>account screen</View>
-    )
-}
+  return (
+    <View>
+      <Text>Signup screen</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({});
 

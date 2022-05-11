@@ -1,12 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import {View, StyleSheet, Text} from 'react-native';
+import { View, StyleSheet, Text, Button } from "react-native";
 
-const TrackCreateScreen = () => {
-    return (
-        <View>account screen</View>
-    )
-}
+const TrackCreateScreen = ({navigation}) => {
+  return (
+      <>
+    <View>
+      <Text>Track create screen</Text>
+      <Button
+        title="Go to Settings"
+        onPress={() =>
+          navigation.navigate('user')
+        }
+      />
+    </View>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({});
 

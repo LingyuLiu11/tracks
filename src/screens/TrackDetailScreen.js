@@ -4,7 +4,9 @@ import {View, StyleSheet, Text} from 'react-native';
 
 const TrackDetailScreen = () => {
     return (
-        <View>account screen</View>
+        <View>
+      <Text>Track detail screen</Text>
+    </View>
     )
 }
 
