@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 import AuthForm from "../components/AuthForm";
 import { Context as AuthContext } from "../context/AuthContext";
+
 
 const SignupScreen = ({ navigation }) => {
   const { state, signup, clearErrorMessage } = useContext(AuthContext);
@@ -15,6 +16,9 @@ const SignupScreen = ({ navigation }) => {
         submitButtonText="Sign Up"
         onSubmit={signup}
       />
+      <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
+        <Text>go to sign in</Text>
+      </TouchableOpacity>
     </View>
   );
 };
