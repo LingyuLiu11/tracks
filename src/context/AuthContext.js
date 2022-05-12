@@ -1,8 +1,7 @@
 import createDataContext from "./createDataContext";
 import AsyncStorage from "@react-native-community/async-storage";
 import trackerApi from "../api/tracker";
-import { navigate } from "../navigationRef"; 
-
+import { navigate } from "../navigationRef";
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -12,18 +11,19 @@ const authReducer = (state, action) => {
       return { errorMessage: "", token: action.payload };
     case "clear_error_message":
       return { ...state, errorMessage: "" };
+    case "signout":
+      return { token: null, errorMessage: "" };
     default:
       return state;
   }
 };
 
-const tryLocalSignin = dispatch => async () => {
-    const token = await AsyncStorage.getItem('token');
-    if (token) {
-        dispatch({type: signin, payload: token});
-        
-    } 
-}
+const tryLocalSignin = (dispatch) => async () => {
+  const token = await AsyncStorage.getItem("token");
+  if (token) {
+    dispatch({ type: signin, payload: token });
+  }
+};
 
 const clearErrorMessage = (dispatch) => () => {
   dispatch({ type: "clear_error_message" });
@@ -36,8 +36,7 @@ const signup =
       const response = await trackerApi.post("/signup", { email, password });
       await AsyncStorage.setItem("token", response.data.token);
       dispatch({ type: "signin", payload: response.data.token });
-    //   navigation.navigate('user')
-      
+      //   navigation.navigate('user')
     } catch (err) {
       dispatch({
         type: "add_error",
@@ -53,7 +52,7 @@ const signin =
       const response = await trackerApi.post("/signin", { email, password });
       await AsyncStorage.setItem("token", response.data.token);
       dispatch({ type: "signin", payload: response.data.token });
-    //   navigate("TrackList");
+      //   navigate("TrackList");
     } catch (err) {
       dispatch({
         type: "add_error",
@@ -62,14 +61,24 @@ const signin =
     }
   };
 
-const signout = (dispatch) => {
-  return () => {
-    // somehow sign out!!!
-  };
+const signout = (dispatch) => async () => {
+    try {
+        const token = AsyncStorage.getItem(token);
+        await AsyncStorage.clear();
+        console.log(token === null);
+        console.log(token);
+        dispatch({ type: "signout" });
+    } catch (err) {
+        dispatch({
+          type: "add_error",
+          payload: "Something went wrong with sign out",
+        });
+      }
+    
 };
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  {signin, signout, signup, clearErrorMessage, tryLocalSignin},
+  { signin, signout, signup, clearErrorMessage, tryLocalSignin },
   { token: null, errorMessage: "" }
 );
