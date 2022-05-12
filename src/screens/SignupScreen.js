@@ -19,6 +19,10 @@ const SignupScreen = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
         <Text>go to sign in</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => clearErrorMessage()}>
+        <Text>clear error message</Text>
+      </TouchableOpacity>
     </View>
   );
 };
