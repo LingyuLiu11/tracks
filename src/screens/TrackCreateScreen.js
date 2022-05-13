@@ -7,33 +7,16 @@ import { SafeAreaView } from "react-native";
 import { requestForegroundPermissionsAsync, watchPositionAsync, Accuracy } from "expo-location";
 
 import { Context as LocationContext } from '../context/LocationContext';
+import useLocation from '../hooks/useLocation';
 
 
 
 const TrackCreateScreen = ({navigation}) => {
 
   const {addLocation} = useContext(LocationContext);
-  const [err, setErr] = useState(null);
 
-  const startWatching = async () => {
-    try {
-      await requestForegroundPermissionsAsync();
-      await watchPositionAsync({
-        accuracy: Accuracy.BestForNavigation,
-        timeInterval: 1000,
-        distanceInterval: 10
-      }, (location) => {
-        addLocation(location);
-      });
-    } catch(e) {
-      setErr(e);
-    }
-  }
-
-  useEffect (() => {
-    startWatching();
-  }, []);
-
+  const [err] = useLocation((location) => addLocation(location));
+  
   return (
       <SafeAreaView>
     <View>
