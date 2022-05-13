@@ -3,19 +3,19 @@ import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 import AuthForm from "../components/AuthForm";
 import { Context as AuthContext } from "../context/AuthContext";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const SignupScreen = ({ navigation }) => {
   const { state, signup, clearErrorMessage, tryLocalSignin } = useContext(AuthContext);
 
-useEffect (() => {
-    tryLocalSignin();
-    const token = AsyncStorage.getItem('token');
-    if (token) {
-        navigation.navigate('create');
-    };    
-}, []);
+// useEffect (() => {
+//     tryLocalSignin();
+//     const token = AsyncStorage.getItem('token');
+//     if (token) {
+//         navigation.navigate('create');
+//     };    
+// }, []);
 
   return (
     <View style={styles.container}>

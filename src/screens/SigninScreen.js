@@ -3,14 +3,16 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import AuthForm from "../components/AuthForm";
 import { Context } from "../context/AuthContext";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const token =  AsyncStorage.getItem("token");
 
 const SigninScreen = () => {
   const { state, signin, clearErrorMessage } = useContext(Context);
-  const token = AsyncStorage.getItem("token");
+  
   return (
     <View style={styles.container}>
-      {token ? (
+      {token !== null ? (
         <View>
           <Text>logged in</Text>
           {/* <Text>{token}</Text> */}

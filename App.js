@@ -64,6 +64,7 @@ const App = () =>  {
           component={TrackCreateScreen}
         />
         <Stack.Screen name="List" component={TrackListScreen} />
+        <Stack.Screen name="detail" component={TrackDetailScreen} />
         <Stack.Screen name="user" component={MyTabs} />
       </Stack.Navigator>
     </NavigationContainer>
