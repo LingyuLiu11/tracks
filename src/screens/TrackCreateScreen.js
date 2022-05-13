@@ -11,11 +11,13 @@ import useLocation from '../hooks/useLocation';
 
 
 
+
 const TrackCreateScreen = ({navigation}) => {
+  const [isFocoused, setIsFocoused] = useState(true);
 
   const {addLocation} = useContext(LocationContext);
 
-  const [err] = useLocation((location) => addLocation(location));
+  const [err] = useLocation(isFocoused, addLocation);
   
   return (
       <SafeAreaView>
@@ -42,6 +44,13 @@ const TrackCreateScreen = ({navigation}) => {
     </View>
     <Map></Map>
     {err? <Text>please enable location services</Text> : null}
+
+    <Button
+        title="stop tracking"
+        onPress={() =>
+          setIsFocoused(!isFocoused)
+        }
+      />
     </SafeAreaView>
   );
 };
