@@ -28,13 +28,15 @@ export default (shouldTrack, callback) => {
   };
 
   useEffect(() => {
-      if (shouldTrack) {
-          startWatching();
-      } else{
-          subscriber.remove();
-          setSubscriber(null);
+    if (shouldTrack) {
+      startWatching();
+    } else {
+      if (subscriber != null) {
+        subscriber.remove();
+        setSubscriber(null);
       }
-  }, [shouldTrack]);
+    }
+  }, [shouldTrack, callback]);
 
   return [err];
 };
