@@ -25,6 +25,12 @@ const SigninScreen = () => {
           submitButtonText="Sign In"
         />
       )}
+      <AuthForm
+          headerText="Sign In to Your Account"
+          errorMessage={state.errorMessage}
+          onSubmit={signin}
+          submitButtonText="Sign In"
+        />
       <TouchableOpacity onPress={() => clearErrorMessage()}>
         <Text>clear error message</Text>
       </TouchableOpacity>
