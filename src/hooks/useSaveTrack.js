@@ -8,10 +8,11 @@ import { Context as AuthContext } from "../context/AuthContext";
 
 export default () => {
     const {createTracks } = useContext(TrackContext);
-    const {state: {locations, name}} = useContext(LocationContext);
+    const {state: {locations, name}, reset} = useContext(LocationContext);
 
-    const saveTrack = () => {
+    const saveTrack = async () => {
         createTracks(name, locations);
+        reset();
     }
 
     return [saveTrack];
