@@ -16,6 +16,7 @@ import TrackListScreen from "./src/screens/TrackListScreen";
 
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { Provider as LocationProvider } from "./src/context/LocationContext";
+import { Provider as TrackProvider } from "./src/context/TrackContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -73,10 +74,12 @@ const styles = StyleSheet.create({
 
 export default () => {
   return (
-    <LocationProvider>
-      <AuthProvider>
-        <App></App>
-      </AuthProvider>
-    </LocationProvider>
+    <TrackProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <App></App>
+        </AuthProvider>
+      </LocationProvider>
+    </TrackProvider>
   );
 };
